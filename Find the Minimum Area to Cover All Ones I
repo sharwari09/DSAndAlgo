@@ -1,0 +1,40 @@
+"""
+Find the Minimum Area to Cover All Ones I
+
+You are given a 2D binary array grid. Find a rectangle with horizontal and vertical sides with the smallest area,
+such that all the 1's in the grid lie inside this rectangle.
+Return the minimum possible area of the rectangle.
+"""
+
+# Code
+class Solution:
+    def minimumArea(self, grid: List[List[int]]) -> int:
+        max_row = float("-inf")
+        max_col = float("-inf")
+        min_row = float("inf")
+        min_col = float("inf")
+        r = len(grid)
+        c = len(grid[0])
+        for i in range(r):
+            for j in range(c):
+                if grid[i][j] == 1:
+                    min_row = min(min_row, i + 1)
+                    min_col = min(min_col, j + 1)
+                    max_row = max(max_row, i + 1)
+                    max_col = max(max_col, j + 1)
+        w = max_row - min_row + 1
+        l = max_col - min_col + 1
+        return w * l
+
+"""
+Intuition
+To determine the minimum area of a rectangle that covers all the 1s in a grid, 
+we need to identify the extreme boundaries of this rectangle. 
+Specifically, we need the topmost, bottommost, leftmost, and rightmost positions where 1s appear.
+
+Complexity
+Time complexity: O(N * M),
+where N is no. of rows and M is no. of columns
+
+Space complexity: O(1) # Constant space
+"""
