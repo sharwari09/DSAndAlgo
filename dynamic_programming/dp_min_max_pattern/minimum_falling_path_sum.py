@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/minimum-falling-path-sum
+
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
         rows = len(matrix)
@@ -12,3 +14,14 @@ class Solution:
                 if col < cols-1:
                     dp[row][col] = min( matrix[row][col] + dp[row+1][col+1], dp[row][col])
         return min(dp[0])
+
+"""
+Intuition: The idea here is to initialize the last row with the same values from the input matrix and then
+using these values to calculate the minimum values to reach to the first row. 
+"""
+
+
+"""
+Time Complexity: O(N^2), where N is no. of rows and columns.
+Space Complexity: O(N^2), where N is no. of rows and columns.
+"""
