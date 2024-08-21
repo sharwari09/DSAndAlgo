@@ -10,13 +10,18 @@ class Solution:
             return []
         queue = deque([root, 0])
         ans = defaultdict(int)
-        ans[0] = root.val
         while queue:
             l = len(queue)
             for i in range(l):
                 node, col = queue.popleft()
+                ans[col] = node.val
                 if node.left:
                     queue.append((node.left, col-1))
                 if node.right:
                     queue.append(node.right, col+1)
-        return ans
+        return ans.values()
+
+"""
+Time Complexity: O(N), N is the no. of nodes
+Space Complexity: O(N), N is the no. of nodes
+"""
